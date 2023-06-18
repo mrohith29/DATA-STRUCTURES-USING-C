@@ -7,7 +7,10 @@ struct node
 };
 int main()
 {
-    struct node *ptr;
-    scanf("%d",&ptr);
-    printf("%d",sizeof(ptr));
+    struct node *head;
+    struct node *second;
+    struct node *third;
+    struct node *fourth;
+
+    printf("%d",sizeof(head));
 }
