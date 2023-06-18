@@ -49,14 +49,14 @@ struct node *insert_at_end(struct node *head)
 struct node *insert_after_element(struct node *head)
 {
     struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    int data,reference;
+    int data, reference;
     printf("Enter the element before which you want to insert the element.\n");
     scanf("%d", &reference);
     printf("Enter the data to insert.\n");
-    scanf("%d",&data);
+    scanf("%d", &data);
     ptr->data = data;
     struct node *p;
-    while(p->data != reference)
+    while (p->data != reference)
     {
         p = p->next;
     }
@@ -64,7 +64,6 @@ struct node *insert_after_element(struct node *head)
     p->next = ptr;
     return p;
 }
-
 
 // struct node *insert_before_element(struct node *head)
 // {
@@ -86,6 +85,29 @@ struct node *insert_after_element(struct node *head)
 //         p
 //     }
 // }
+struct node *delet_at_beginning(struct node *head)
+{
+    struct node *ptr = head;
+    head = head->next;
+    free(ptr);
+    return head;
+}
+
+struct node *delet_at_end(struct node *head)
+{
+    struct node *p = head;
+    struct node *q = head->next;
+    while(q->next != NULL)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = NULL;
+    free(q);
+    return head;
+}
+
+
 
 int main()
 {
@@ -101,13 +123,19 @@ int main()
 
     while (1)
     {
+
         printf("Select your option:\n\
     -1. Display the list\n\
     1. Insert at the beginning of the element\n\
     2. Insert before the element\n\
     3. Insert after the element\n\
     4. Insert at the end\n\
+    5. Delet at bigenning\n\
+    6. Delet at end\n\
+    7. Delet in middle\n\
     0. exit\n");
+
+
         scanf("%d", &option);
         switch (option)
         {
@@ -124,6 +152,12 @@ int main()
             break;
         case 3:
             head = insert_after_element(head);
+            break;
+        case 5:
+            head = delet_at_beginning(head);
+            break;
+        case 6:
+            head = delet_at_end(head);
         }
     }
 }
