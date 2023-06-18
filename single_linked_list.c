@@ -26,22 +26,31 @@ int main()
 {
     int option;
     struct node *head;
-    struct node *newnode;
+    // struct node *newnode;
     
-    newnode=(struct node*)malloc(sizeof(struct node));
+    // newnode=(struct node*)malloc(sizeof(struct node));
+    head= (struct node*)malloc(sizeof(struct node));
     printf("Enter the element in the new node.\n");
-    scanf("%d", &newnode->data);
-    newnode->next = NULL;  
+    scanf("%d", &head->data);
+    head->next = NULL;  
 
+    // if(head==NULL)
+    // {
+    //    / head = newnode;
+        
+    // }
+    printf("%d\n",head->data);
+    // printf("%d\n",&head->data);
     printf("Select your option:\n\
     1. Insert at the beginning of the element\n\
     2. Insert before the element\n\
     3. Insert after the element\n");
 
-    scanf("%d",option);
-    switch(option)
-    {
-        case 1: 
-    }
+    // scanf("%d",option);
+    // switch(option)
+    // {
+    //     case 1: insert_at_beginning(head);
+    //     break;
+    // }
 
 }
