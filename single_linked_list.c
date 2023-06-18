@@ -31,9 +31,11 @@ struct node *insert_at_beginning(struct node *head)
 
 struct node *insert_at_end(struct node *head)
 {
+    int data;
     struct node *ptr = (struct node *)malloc(sizeof(struct node));
     printf("Enter the element needed to insert at the end\n");
-    scanf("%d", &ptr->data);
+    scanf("%d", &data);
+    ptr->data = data;
     ptr->next = NULL;
     struct node *p = head;
     while (p->next != NULL)
@@ -62,6 +64,28 @@ struct node *insert_after_element(struct node *head)
     p->next = ptr;
     return p;
 }
+
+
+// struct node *insert_before_element(struct node *head)
+// {
+//     int element,data;
+//     struct node *ptr = (struct node*)malloc(sizeof(struct node));
+//     printf("Enter the element before which you want to enter the data\n");
+//     scanf("%d",&element);
+//     int k=0;
+//     struct node *p = (struct node*)malloc(sizeof(struct node));
+//     p = head;
+//     while(p->next != element)
+//     {
+//         p = p->next;
+//         k++;
+//     }
+//     p = head;
+//     while(k != 1 && )
+//     {
+//         p
+//     }
+// }
 
 int main()
 {
