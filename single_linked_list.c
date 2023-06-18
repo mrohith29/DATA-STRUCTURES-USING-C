@@ -85,7 +85,7 @@ struct node *insert_after_element(struct node *head)
 //         p
 //     }
 // }
-struct node *delet_at_beginning(struct node *head)
+struct node *Delete_at_beginning(struct node *head)
 {
     struct node *ptr = head;
     head = head->next;
@@ -93,7 +93,7 @@ struct node *delet_at_beginning(struct node *head)
     return head;
 }
 
-struct node *delet_at_end(struct node *head)
+struct node *Delete_at_end(struct node *head)
 {
     struct node *p = head;
     struct node *q = head->next;
@@ -107,11 +107,11 @@ struct node *delet_at_end(struct node *head)
     return head;
 }
 
-struct node *delet_in_between(struct node *head)
+struct node *Delete_in_between(struct node *head)
 {
     struct node *p = head;
     struct node *q = head->next;
-    printf("Enter the element which you want to delet\n");
+    printf("Enter the element which you want to Delete\n");
     int element;
     scanf("%d",&element);
     while(q->data != element)
@@ -147,9 +147,9 @@ int main()
     2. Insert before the element\n\
     3. Insert after the element\n\
     4. Insert at the end\n\
-    5. Delet at bigenning\n\
-    6. Delet at end\n\
-    7. Delet in middle\n\
+    5. Delete at bigenning\n\
+    6. Delete at end\n\
+    7. Delete in middle\n\
     0. exit\n");
 
 
@@ -171,13 +171,13 @@ int main()
             head = insert_after_element(head);
             break;
         case 5:
-            head = delet_at_beginning(head);
+            head = Delete_at_beginning(head);
             break;
         case 6:
-            head = delet_at_end(head);
+            head = Delete_at_end(head);
             break;
         case 7:
-            head = delet_in_between(head);
+            head = Delete_in_between(head);
             break;
         }
     }
