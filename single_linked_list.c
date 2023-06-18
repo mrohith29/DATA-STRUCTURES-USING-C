@@ -44,6 +44,25 @@ struct node *insert_at_end(struct node *head)
     return p;
 }
 
+struct node *insert_after_element(struct node *head)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    int data,reference;
+    printf("Enter the element before which you want to insert the element.\n");
+    scanf("%d", &reference);
+    printf("Enter the data to insert.\n");
+    scanf("%d",&data);
+    ptr->data = data;
+    struct node *p;
+    while(p->data != reference)
+    {
+        p = p->next;
+    }
+    ptr->next = p->next;
+    p->next = ptr;
+    return p;
+}
+
 int main()
 {
     int option;
@@ -78,6 +97,9 @@ int main()
             break;
         case 4:
             head = insert_at_end(head);
+            break;
+        case 3:
+            head = insert_after_element(head);
         }
     }
 }
