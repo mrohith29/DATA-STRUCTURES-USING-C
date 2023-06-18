@@ -107,6 +107,11 @@ struct node *delet_at_end(struct node *head)
     return head;
 }
 
+struct node *delet_in_between(struct node *head)
+{
+    struct node *ptr = head;
+    
+}
 
 
 int main()
@@ -158,6 +163,10 @@ int main()
             break;
         case 6:
             head = delet_at_end(head);
+            break;
+        case 7:
+            head = delet_in_between(head);
+            break;
         }
     }
 }
