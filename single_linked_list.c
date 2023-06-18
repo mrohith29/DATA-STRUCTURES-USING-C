@@ -109,8 +109,20 @@ struct node *delet_at_end(struct node *head)
 
 struct node *delet_in_between(struct node *head)
 {
-    struct node *ptr = head;
-    
+    struct node *p = head;
+    struct node *q = head->next;
+    printf("Enter the element which you want to delet\n");
+    int element;
+    scanf("%d",&element);
+    while(q->data != element)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = q->next;
+    free(q);
+    return head;
+
 }
 
 
