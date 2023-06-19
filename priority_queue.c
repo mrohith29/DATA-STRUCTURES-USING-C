@@ -56,9 +56,9 @@ void display()
     if (front == rear) {
         printf("\nqueue is empty\n");
     } else {
-        printf("  job name\t\tpriority\n");
+        printf("  job name   priority\n");
         for (i = front + 1; i <= rear; i++) {
-            printf("  %c\t\t%d\n", e[i].job, e[i].pr);
+            printf("  %c    -   %d\n", e[i].job, e[i].pr);
         }
     }
 }
