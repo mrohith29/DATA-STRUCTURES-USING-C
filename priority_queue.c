@@ -27,11 +27,12 @@ void dequeue()
         printf("\nqueue is empty\n");
     } else {
         front++;
-        // Shift elements in the array
-        for (int i = front; i <= rear; i++) {
-            e[i] = e[i + 1];
+        printf("deleted element is %c with priority is %d\n",e[front].job,e[front].pr);
+
+        if(front == rear)
+        {
+            front = rear = -1;
         }
-        rear--;
     }
 }
 
@@ -58,7 +59,7 @@ void display()
     } else {
         printf("  job name   priority\n");
         for (i = front + 1; i <= rear; i++) {
-            printf("  %c    -   %d\n", e[i].job, e[i].pr);
+            printf("%c    -   %d\n", e[i].job, e[i].pr);
         }
     }
 }
@@ -71,7 +72,7 @@ int main()
         scanf("%d", &ch);
         switch (ch) {
             case 1:
-                scanf(" %c %d", &element, &p);
+                scanf("%s %d", &element, &p);
                 enqueue(element, p);
                 sort();
                 break;
