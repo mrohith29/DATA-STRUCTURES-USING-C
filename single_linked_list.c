@@ -1,184 +1,137 @@
-#include <stdio.h>
-#include <stdlib.h>
-struct node
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct SLL sll; 
+struct SLL
 {
     int data;
-    struct node *next;
-};
-
-void linkedlisttraversal(struct node *ptr)
+    sll *next;
+}*head=NULL;
+int count=0,key;
+void insert(int pos)
 {
-    while (ptr != NULL)
+    sll *newnode,*temp=head,*prev;
+    if(1>pos || pos>count+1)
     {
-        printf("Element: %d\n", ptr->data);
-        ptr = ptr->next;
+        printf("Position does not exist - Cannot insert into SLL\n");
+        return;
+    }
+    newnode=(sll*)malloc(sizeof(sll));
+    scanf("%d",&newnode->data);
+    if(pos==1)
+    {
+        newnode->next=head;
+        head=newnode;
+    }
+    else
+    {
+        for(int i=1;i<pos;i++)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+        newnode->next=temp;
+        prev->next=newnode;
+    }
+    count++;
+}
+void del(int pos)
+{
+    sll *temp=head,*prev;
+    if(1>pos || count<pos)
+    {
+        printf("Position does not exist  - Cannot delete from SLL\n");
+        return;
+    }
+    if(pos==1)
+    {
+        printf("\nDeleted element from SLL is %d",head->data);
+        head=head->next;
+    }
+    else
+    {
+        for(int i=1;i<pos;i++)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+        printf("\nDeleted element from SLL is %d",temp->data);
+        prev->next=temp->next;
+    }
+    count--;
+}
+void display()
+{
+    sll *temp=head;
+    if(head==NULL)
+        printf("\nEmpty SLL - Cannot display\n");
+    else
+    {
+        while(temp!=NULL)
+        {
+            printf("%d->",temp->data);
+            temp=temp->next;
+        }
     }
 }
-
-struct node *insert_at_beginning(struct node *head)
+void search()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the data to enter before at the beginning\n");
-    scanf("%d", &ptr->data);
-    ptr->next = head;
-    return ptr;
-    // while(ptr!=NULL)
-    // {
-    //     printf("%d\n",ptr->data);
-    //     ptr=ptr->next;
-    // }
-}
-
-struct node *insert_at_end(struct node *head)
-{
-    int data;
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element needed to insert at the end\n");
-    scanf("%d", &data);
-    ptr->data = data;
-    ptr->next = NULL;
-    struct node *p = head;
-    while (p->next != NULL)
+    sll *temp=head;
+    scanf("%d",&key);
+    while(temp!=NULL)
     {
-        p = p->next;
+        if(temp->data==key)
+        {
+            printf("%d is found in SLL\n",key);
+            return;
+        }
+        temp=temp->next;
     }
-    p->next = ptr;
-    return p;
+    printf("%d is not found in SLL\n",key);
 }
-
-struct node *insert_after_element(struct node *head)
+void nodecount()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    int data, reference;
-    printf("Enter the element before which you want to insert the element.\n");
-    scanf("%d", &reference);
-    printf("Enter the data to insert.\n");
-    scanf("%d", &data);
-    ptr->data = data;
-    struct node *p;
-    while (p->data != reference)
+    sll *temp=head;
+    key=0;
+    while(temp!=NULL)
     {
-        p = p->next;
+        temp=temp->next;
+        key++;
     }
-    ptr->next = p->next;
-    p->next = ptr;
-    return p;
+    printf("No of nodes in SLL = %d\n",key);
 }
-
-// struct node *insert_before_element(struct node *head)
-// {
-//     int element,data;
-//     struct node *ptr = (struct node*)malloc(sizeof(struct node));
-//     printf("Enter the element before which you want to enter the data\n");
-//     scanf("%d",&element);
-//     int k=0;
-//     struct node *p = (struct node*)malloc(sizeof(struct node));
-//     p = head;
-//     while(p->next != element)
-//     {
-//         p = p->next;
-//         k++;
-//     }
-//     p = head;
-//     while(k != 1 && )
-//     {
-//         p
-//     }
-// }
-struct node *Delete_at_beginning(struct node *head)
+void rvsedsply(sll *temp)
 {
-    struct node *ptr = head;
-    head = head->next;
-    free(ptr);
-    return head;
-}
-
-struct node *Delete_at_end(struct node *head)
-{
-    struct node *p = head;
-    struct node *q = head->next;
-    while(q->next != NULL)
+    if(temp!=NULL)
     {
-        p = p->next;
-        q = q->next;
+        rvsedsply(temp->next);
+        printf("%d ",temp->data);
     }
-    p->next = NULL;
-    free(q);
-    return head;
 }
-
-struct node *Delete_in_between(struct node *head)
-{
-    struct node *p = head;
-    struct node *q = head->next;
-    printf("Enter the element which you want to Delete\n");
-    int element;
-    scanf("%d",&element);
-    while(q->data != element)
-    {
-        p = p->next;
-        q = q->next;
-    }
-    p->next = q->next;
-    free(q);
-    return head;
-
-}
-
-
 int main()
 {
-    int option;
-    struct node *head;
-
-    head = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element in the \"head\".\n");
-    scanf("%d", &head->data);
-    head->next = NULL;
-
-    // printf("%d\n",head->data);
-
-    while (1)
+    int pos,ch;
+    while(1)
     {
-
-        printf("Select your option:\n\
-    -1. Display the list\n\
-    1. Insert at the beginning of the element\n\
-    2. Insert before the element\n\
-    3. Insert after the element\n\
-    4. Insert at the end\n\
-    5. Delete at bigenning\n\
-    6. Delete at end\n\
-    7. Delete in middle\n\
-    0. exit\n");
-
-
-        scanf("%d", &option);
-        switch (option)
-        {
-        case 0:
-            exit(0);
-        case 1:
-            head = insert_at_beginning(head);
-            break;
-        case -1:
-            linkedlisttraversal(head);
-            break;
-        case 4:
-            head = insert_at_end(head);
-            break;
-        case 3:
-            head = insert_after_element(head);
-            break;
-        case 5:
-            head = Delete_at_beginning(head);
-            break;
-        case 6:
-            head = Delete_at_end(head);
-            break;
-        case 7:
-            head = Delete_in_between(head);
-            break;
-        }
+       scanf("%d",&ch);
+       switch(ch)
+       {
+            case 1: scanf("%d",&pos);
+                   insert(pos);
+                   break;
+            case 2: scanf("%d",&pos);
+                    del(pos);
+                    break;
+            case 3: printf("\n"); 
+                    display();
+                    break;
+            case 4: search();
+                    break;
+            case 5: nodecount();
+                    break;
+            case 6: rvsedsply(head);
+                    break;
+            case 7: exit(0);
+            default:printf("invalid choice\n");
+       }
     }
 }
