@@ -57,5 +57,6 @@
     "schannel.h": "c",
     "stdio.h": "c",
     "stdlib.h": "c"
-  }
+  },
+  "C_Cpp_Runner.useLinkTimeOptimization": false
 }
