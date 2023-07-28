@@ -23,7 +23,7 @@ void printgraph(int v, int type)
     for (int i = 1; i <= v; i++)
     {
         printf("VERTEX %d : ",i);
-        for (int j = 0; j <= v; j++)
+        for (int j = 1; j <= v; j++)
         {
             printf("%d ",graph[i][j]);
         }
