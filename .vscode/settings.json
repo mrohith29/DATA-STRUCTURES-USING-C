@@ -58,5 +58,6 @@
     "stdio.h": "c",
     "stdlib.h": "c"
   },
-  "C_Cpp_Runner.useLinkTimeOptimization": false
+  "C_Cpp_Runner.useLinkTimeOptimization": false,
+  "C_Cpp.errorSquiggles": "enabled"
 }
