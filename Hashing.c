@@ -37,7 +37,6 @@ void delete()
 void display()
 {
     int value;
-    // scanf("%d",&value);
     for (int i = 0; i < size; i++)
     {
         printf("%d ",a[i]);
